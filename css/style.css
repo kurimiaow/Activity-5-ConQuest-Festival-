@@ -37,6 +37,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -53,10 +54,26 @@ header {
     margin-right: 15px;
 }
 
+/* Mobile menu checkbox (hidden) */
+#menu-toggle {
+    display: none;
+}
+
+/* Mobile menu label/icon */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1.5rem;
+    color: #23324d;
+}
+
 nav ul {
     display: flex;
     list-style: none;
     justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
 nav li {
@@ -74,8 +91,6 @@ nav a {
     justify-content: center;
     letter-spacing: 1px;
     position: relative; 
-    right: -50px;
-    top: 15px;
 }
 
 nav a::after {
@@ -97,12 +112,13 @@ nav a:hover {
     color: #262450; 
     transform: translateY(-2px); 
 }
+
 .cta-button {
     font-family: 'Montserrat', sans-serif;
     display: inline-block;
     padding: 0.8rem 2rem;
     background-color: #03315f; 
-    color: #ffffff; 
+    color: #ffffff !important; 
     text-decoration: none;
     border: none;
     cursor: pointer;
@@ -113,15 +129,67 @@ nav a:hover {
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    position: relative; 
-    top: auto;
-    right: -100px; 
 }
 
 .cta-button:hover {
     background-color: #e69615;
-        transform: translateY(-3px);
+    transform: translateY(-3px);
     box-shadow: 0 6px 15px #202900; 
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    .header-container {
+        justify-content: space-between;
+    }
+    
+    .menu-icon {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 100;
+    }
+    
+    nav {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background-color: #c6ecff;
+        z-index: 99;
+    }
+    
+    /* When checkbox is checked, show the menu */
+    #menu-toggle:checked ~ nav {
+        max-height: 300px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem 0;
+    }
+    
+    nav li {
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+    
+    nav a {
+        display: block;
+        padding: 10px 0;
+    }
+    
+    nav a.cta-button {
+        margin: 10px auto;
+        display: inline-block;
+        width: auto;
+    }
 }
 
 /* Hero Section Styles */
